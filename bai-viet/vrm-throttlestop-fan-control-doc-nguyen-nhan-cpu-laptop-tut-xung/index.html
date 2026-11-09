@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung</title>
+<meta name="description" content="CPU laptop tụt xung thường do ba chỗ: bộ cấp nguồn VRM, giới hạn công suất mà ThrottleStop đọc được và tốc độ quạt do firmware khóa. Bài này đi từng chỗ một.">
+<link rel="canonical" href="https://chip-laptop-vn.github.io/bai-viet/vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css?v=a7b31697">
+<!--seo-->
+<meta property="og:type" content="article">
+<meta property="og:title" content="VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung">
+<meta property="og:description" content="CPU laptop tụt xung thường do ba chỗ: bộ cấp nguồn VRM, giới hạn công suất mà ThrottleStop đọc được và tốc độ quạt do firmware khóa. Bài này đi từng chỗ một.">
+<meta property="og:url" content="https://chip-laptop-vn.github.io/bai-viet/vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Ghi chép chip laptop">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung", "description": "CPU laptop tụt xung thường do ba chỗ: bộ cấp nguồn VRM, giới hạn công suất mà ThrottleStop đọc được và tốc độ quạt do firmware khóa. Bài này đi từng chỗ một.", "datePublished": "2026-11-09", "dateModified": "2026-11-09", "inLanguage": "vi", "mainEntityOfPage": "https://chip-laptop-vn.github.io/bai-viet/vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/", "author": {"@type": "Organization", "name": "Ghi chép chip laptop"}, "publisher": {"@type": "Organization", "name": "Ghi chép chip laptop"}}</script>
+<!--/seo-->
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<header class="top"><div class="wrap bar"><a class="brand" href="../../"><span class="mark" aria-hidden="true">C</span><span class="bn">Ghi chép chip laptop</span><span class="tag">Nhật ký kỹ thuật của Quân</span></a><nav class="nav" aria-label="Chính"><a href="../../">Trang chủ</a><a href="../../#chu-de-ket-noi">Kết nối</a><a href="../../#chu-de-nguon-nhiet">Nguồn và nhiệt</a><a href="../../#chu-de-ai-cuc-bo">AI cục bộ</a><a href="../../#ve-blog">Về blog</a></nav></div></header>
+<div class="wrap lay"><main id="main" class="col post">
+<p class="crumb"><a href="../../">Trang chủ</a><span aria-hidden="true"> / </span><span>Nguồn và nhiệt</span></p>
+<article>
+<h1>VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung</h1>
+<p class="gia">Đăng ngày 09/11/2026</p>
+<p>Khi một chiếc laptop chạy nặng được vài phút rồi tụt xung nhịp, phản xạ quen thuộc là đổ lỗi cho keo tản nhiệt. Đôi khi đúng, nhưng thường nguyên nhân nằm ở một trong ba chỗ khác: bộ cấp nguồn cho CPU, giới hạn công suất do hãng đặt trong BIOS, hoặc đường cong quạt bị firmware khóa. Ghi chép này tách ba chỗ đó ra, nói rõ mỗi chỗ đo được gì và công cụ nào phù hợp.</p>
+<h2>VRM: bộ cấp nguồn quyết định dòng điện CPU nhận được</h2>
+<p>VRM là viết tắt của Voltage Regulator Module, một mạch hạ áp kiểu buck đưa điện từ pin hoặc bộ sạc xuống khoảng 1 V cho CPU. CPU hiện đại ăn dòng rất lớn ở điện áp thấp, nên mạch này phải chuyển đổi hiệu quả và chia dòng ra nhiều pha.</p>
+<p>Trong laptop, bộ điều khiển VRM theo chuẩn IMVP9 của Intel, ví dụ dòng Renesas ISL95869 cấu hình được 1, 2 hoặc 3 pha. Bộ điều khiển nhận lệnh từ CPU qua đường SVID, tức CPU tự yêu cầu mức điện áp nó cần theo từng thời điểm. Một ví dụ tính toán từ tài liệu của Texas Instruments cho thấy quy mô: đầu vào 12 V, đầu ra 1,2 V dòng 40 A tương đương khoảng 48 W, và phía đầu vào kéo khoảng 4 A. Nếu chia cho 2 pha, mỗi cuộn cảm gánh khoảng 20 A.</p>
+<p>Nhiệt sinh ra trên linh kiện tỉ lệ với bình phương dòng điện nhân điện trở. Vì vậy gấp đôi dòng thì nhiệt gấp bốn, và đó là lý do chia pha có ích. Dung sai ±1% ở 1,2 V là khoảng 12 mV, nghĩa là mạch phải giữ điện áp rất sát trong lúc tải đổi liên tục. Các pha chạy xen kẽ giúp giảm gợn sóng điện áp ở đầu ra.</p>
+<p>Một lưu ý khi xem ảnh bo mạch: đếm số cuộn cảm không cho ra số pha thật. Có thiết kế dùng chung cuộn cảm, có thiết kế dùng DrMOS tích hợp cả MOSFET và mạch điều khiển trong một linh kiện. Muốn biết số pha, cần tài liệu của bộ điều khiển hoặc bản vẽ mạch. Undervolt giảm dòng đi qua VRM nên mát hơn, nhưng đặt quá thấp sẽ gây mất ổn định.</p>
+<p><a href="https://technologyspot.vn/mach-vrm-la-gi-vi-sao-anh-huong-xung-nhip-cpu/"><strong>Mạch VRM là gì và vì sao ảnh hưởng xung nhịp CPU</strong></a> phân tích kỹ hơn phần dòng điện và chia pha, tôi dùng bài đó để đối chiếu các số trong phần này.</p>
+<h2>ThrottleStop: đọc lý do CPU bị hạm xung</h2>
+<p>ThrottleStop do Kevin Glynn (bút danh unclewebb) viết và được TechPowerUp phân phối, dành cho CPU Intel. Bản 9.6 đã thêm hỗ trợ Raptor Lake. Công cụ này nên coi như dụng cụ đo trước, rồi mới là dụng cụ chỉnh.</p>
+<p>Cách dùng an toàn gồm vài bước. Chạy với quyền quản trị và chụp lại trạng thái ban đầu của các ô. Bấm nút Limits để mở bảng Limit Reasons chia thành ba cột: CORE, GPU và RING. Ô màu đỏ nghĩa là đang bị hạn chế ngay lúc này, ô màu vàng nghĩa là đã từng xảy ra trước đó. Vì cờ vàng tồn tại lâu, nên xóa cờ trước mỗi lần thử, rồi đối chiếu thời điểm cờ đỏ bật lên với thời điểm xung nhịp tụt.</p>
+<p>Một số nhãn cần hiểu đúng nghĩa:</p>
+<ul>
+<li>PL1 là giới hạn công suất trung bình, PL2 là giới hạn ngắn hạn, Tau là hằng số thời gian cho phép CPU ở mức PL2.</li>
+<li>EDP OTHER xuất hiện khi các giới hạn dòng điện hoặc công suất chồng lên nhau.</li>
+<li>PROCHOT nghĩa là cơ chế kiểm soát nhiệt TCC của CPU đang hoạt động.</li>
+<li>BD PROCHOT nghĩa là một linh kiện bên ngoài, như bộ sạc, pin, GPU hay VRM, kéo tín hiệu PROCHOT# trong khi CPU vẫn mát.</li>
+</ul>
+<p>Nút TPL mở bảng Turbo Power Limits để xem PL1, PL2 hiện hành. Ở lần chạy đầu, không nên đổi điện áp hay hệ số nhân. Chỉ quan sát và ghi lại.</p>
+<p><a href="https://technologyspot.vn/throttlestop-doc-nguyen-nhan-cpu-tut-xung/"><strong>ThrottleStop đọc nguyên nhân CPU tụt xung</strong></a> có thêm cách đọc từng ô trong bảng Limit Reasons.</p>
+<h2>Fan Control: vì sao laptop hay khóa quạt</h2>
+<p>Fan Control của tác giả Rem0o là phần mềm mã nguồn đóng, xây trên LibreHardwareMonitor và các plugin. Phần hỏi đáp trong README ghi rằng laptop phần lớn không hoạt động. Ngoại lệ là các plugin cho một số máy Dell, Lenovo, Acer và ASUS. Cài bằng lệnh winget install Rem0o.FanControl. Từ bản V238, phần mềm dùng PawnIO thay cho WinRing0, vì Defender từng cảnh báo WinRing0 trong năm 2025.</p>
+<p>Quạt laptop được điều khiển qua ba lớp. Lớp thứ nhất là EC, vi điều khiển nhúng do hãng laptop viết firmware, đọc ghi qua lệnh RD_EC (0x80) và WR_EC (0x81). Lớp thứ hai là ACPI, với thiết bị quạt mang mã PNP0C0B cùng các phương thức _FIF, _FPS, _FSL, _FST. Lớp thứ ba là WMI qua trình điều khiển Wmiacpi.sys, GUID khai báo trong _WDG.</p>
+<p>Hãng khóa quạt vì ACPI chỉ chuẩn hóa giao thức EC, không chuẩn hóa ô nhớ nào chứa tốc độ quạt, nên mỗi mẫu máy một khác. Ngoài ra hãng gắn tốc độ quạt với giới hạn công suất của từng chế độ, và muốn giữ nhất quán với cấu hình nhiệt đã thử nghiệm. Muốn đổi tốc độ quạt, nên dùng công cụ của chính hãng trước: Armoury Crate có chế độ Manual, MSI Center có Auto, Cooler Boost và Advanced, còn Lenovo có Vantage, Legion Zone hoặc phím Fn + Q.</p>
+<p><a href="https://technologyspot.vn/fan-control-tren-laptop-chinh-toc-do-quat/"><strong>Fan Control trên laptop chỉnh tốc độ quạt</strong></a> giải thích rõ hơn những mẫu máy nào có plugin.</p>
+<h2>Bảng đối chiếu: dấu hiệu và chỗ cần nhìn</h2>
+<table>
+<thead><tr><th>Dấu hiệu</th><th>Chỗ nghi ngờ</th><th>Công cụ đọc</th><th>Việc làm đầu tiên</th></tr></thead>
+<tbody>
+<tr><td>Xung tụt sau vài giây tải nặng</td><td>PL2 hết hạn theo Tau</td><td>ThrottleStop, nút TPL</td><td>Ghi PL1 và PL2 hiện hành</td></tr>
+<tr><td>Cờ PROCHOT đỏ khi CPU còn mát</td><td>Bộ sạc, pin hay VRM</td><td>Limit Reasons, cột CORE</td><td>Thử bộ sạc đủ công suất</td></tr>
+<tr><td>Cờ EDP OTHER đỏ liên tục</td><td>Giới hạn dòng điện chồng nhau</td><td>Limit Reasons</td><td>Kiểm tra chế độ nguồn của hãng</td></tr>
+<tr><td>Nhiệt CPU cao nhưng quạt chậm</td><td>Quạt bị khóa theo chế độ</td><td>Phần mềm hãng</td><td>Chuyển chế độ Performance hoặc Manual</td></tr>
+<tr><td>Mất ổn định sau khi undervolt</td><td>Điện áp đặt quá thấp</td><td>Bài kiểm tải ngắn</td><td>Trả về mặc định rồi giảm từng nấc nhỏ</td></tr>
+</tbody>
+</table>
+<h2>Thứ tự kiểm tra nên theo</h2>
+<p>Bắt đầu bằng việc đọc, không sửa. Chạy một bài tải ổn định trong 10 phút, mở ThrottleStop để xem ô nào đỏ, rồi so với nhiệt độ ghi bằng công cụ giám sát. Nếu cờ đỏ là PROCHOT hay BD PROCHOT trong khi nhiệt còn thấp, hướng nghi ngờ là nguồn cấp hoặc bộ sạc. Nếu nhiệt cao và quạt chậm, thử chế độ quạt do hãng cung cấp trước khi cân nhắc phần mềm bên thứ ba.</p>
+<p>Chỉ sau khi biết nguyên nhân mới đáng bàn tới undervolt hay đổi đường cong quạt. Làm theo thứ tự này giúp tránh tình huống phổ biến là chỉnh nhiều chỗ cùng lúc rồi không biết thay đổi nào có tác dụng.</p>
+</article>
+<!--related-->
+<aside class="lq">
+<h2 class="lq-t">Bài cùng chủ đề</h2>
+<ul>
+<li><a href="../mo-hinh-ai-nho-saluki-27b-granite-4-2-doc-thong-so-truoc-khi-tai/">Mô hình AI nhỏ Saluki 27B và Granite 4.2 - đọc thông số trước khi tải</a></li>
+<li><a href="../miracast-auracast-wake-on-lan-dieu-kien-ket-noi-khong-day-tren-laptop/">Miracast, Auracast và Wake-on-LAN - điều kiện kết nối không dây trên laptop</a></li>
+</ul>
+</aside>
+<!--/related-->
+</main>
+<aside class="side"><section class="w w-about"><span class="av" aria-hidden="true">Q</span><div><h2 class="w-t">Quân</h2><p>Mình ghi lại cách đọc thông số chip, nguồn và AI cục bộ trên laptop đời 2025 và 2026.</p><a class="more" href="../../#ve-blog">Về blog</a></div></section><section class="w w-cats"><h2 class="w-t">Chủ đề</h2><ul><li><a href="../../#chu-de-ket-noi"><span>Kết nối</span></a></li><li><a href="../../#chu-de-nguon-nhiet"><span>Nguồn và nhiệt</span></a></li><li><a href="../../#chu-de-ai-cuc-bo"><span>AI cục bộ</span></a></li></ul></section></aside></div>
+<footer class="foot"><div class="wrap fo"><p class="fn">Ghi chép chip laptop</p><p>Nhật ký kỹ thuật cá nhân của Quân về laptop đời 2025 và 2026.</p><p class="sm">Năm 2026. Nội dung viết lại từ tài liệu công khai của hãng.</p></div></footer>
+</body>
+</html>

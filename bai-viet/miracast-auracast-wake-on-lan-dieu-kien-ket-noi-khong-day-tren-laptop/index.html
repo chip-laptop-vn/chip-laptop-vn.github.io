@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Miracast, Auracast và Wake-on-LAN - điều kiện kết nối không dây trên laptop</title>
+<meta name="description" content="Ba tính năng không dây hay bị hiểu nhầm trên laptop: chiếu màn hình Miracast, phát âm thanh Auracast và bật máy từ xa Wake-on-LAN. Bài này ghi điều kiện từng thứ.">
+<link rel="canonical" href="https://chip-laptop-vn.github.io/bai-viet/miracast-auracast-wake-on-lan-dieu-kien-ket-noi-khong-day-tren-laptop/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css?v=a7b31697">
+<!--seo-->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Miracast, Auracast và Wake-on-LAN - điều kiện kết nối không dây trên laptop">
+<meta property="og:description" content="Ba tính năng không dây hay bị hiểu nhầm trên laptop: chiếu màn hình Miracast, phát âm thanh Auracast và bật máy từ xa Wake-on-LAN. Bài này ghi điều kiện từng thứ.">
+<meta property="og:url" content="https://chip-laptop-vn.github.io/bai-viet/miracast-auracast-wake-on-lan-dieu-kien-ket-noi-khong-day-tren-laptop/">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Ghi chép chip laptop">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Miracast, Auracast và Wake-on-LAN - điều kiện kết nối không dây trên laptop", "description": "Ba tính năng không dây hay bị hiểu nhầm trên laptop: chiếu màn hình Miracast, phát âm thanh Auracast và bật máy từ xa Wake-on-LAN. Bài này ghi điều kiện từng thứ.", "datePublished": "2026-11-09", "dateModified": "2026-11-09", "inLanguage": "vi", "mainEntityOfPage": "https://chip-laptop-vn.github.io/bai-viet/miracast-auracast-wake-on-lan-dieu-kien-ket-noi-khong-day-tren-laptop/", "author": {"@type": "Organization", "name": "Ghi chép chip laptop"}, "publisher": {"@type": "Organization", "name": "Ghi chép chip laptop"}}</script>
+<!--/seo-->
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<header class="top"><div class="wrap bar"><a class="brand" href="../../"><span class="mark" aria-hidden="true">C</span><span class="bn">Ghi chép chip laptop</span><span class="tag">Nhật ký kỹ thuật của Quân</span></a><nav class="nav" aria-label="Chính"><a href="../../">Trang chủ</a><a href="../../#chu-de-ket-noi">Kết nối</a><a href="../../#chu-de-nguon-nhiet">Nguồn và nhiệt</a><a href="../../#chu-de-ai-cuc-bo">AI cục bộ</a><a href="../../#ve-blog">Về blog</a></nav></div></header>
+<div class="wrap lay"><main id="main" class="col post">
+<p class="crumb"><a href="../../">Trang chủ</a><span aria-hidden="true"> / </span><span>Kết nối</span></p>
+<article>
+<h1>Miracast, Auracast và Wake-on-LAN - điều kiện kết nối không dây trên laptop</h1>
+<p class="gia">Đăng ngày 09/11/2026</p>
+<p>Ba cái tên Miracast, Auracast và Wake-on-LAN cùng xuất hiện trong thông số laptop, nhưng chúng giải ba bài toán khác nhau: chiếu hình, phát tiếng và bật máy. Điểm chung là cả ba đều cần đủ điều kiện ở nhiều lớp, từ chip không dây, trình điều khiển, phiên bản Windows tới thiết lập trong BIOS. Một dòng "có hỗ trợ" trên trang bán hàng chưa đủ để biết tính năng chạy được hay không. Ghi chép này liệt kê điều kiện thật của từng thứ.</p>
+<h2>Miracast: chiếu màn hình không cần router</h2>
+<p>Miracast chạy trên Wi-Fi Direct, tức hai thiết bị nối trực tiếp với nhau theo kiểu ngang hàng, truyền hình ảnh nén H.264 qua giao thức RTSP. Công nghệ được Wi-Fi Alliance chứng nhận. Khác với Google Cast hay AirPlay, vốn cần cả hai thiết bị cùng một mạng Wi-Fi, Miracast không cần router. Intel WiDi, công nghệ cùng loại của Intel, đã ngừng từ năm 2016 nên đừng tìm trong thông số máy mới.</p>
+<p>Microsoft nêu rõ các điều kiện để laptop Windows hỗ trợ Miracast. Wi-Fi tối thiểu là 802.11n băng tần 2,4 GHz, băng 5 GHz được khuyến nghị. Với Wi-Fi 6, 6E và 7 cần ăng-ten 2x2. Trình điều khiển Wi-Fi phải theo mô hình WDI và vượt bài kiểm tra HLK. Trình điều khiển đồ họa phải theo WDDM 2.0 trở lên, bộ mã hóa H.264 phải chạy bằng phần cứng, âm thanh LPCM là bắt buộc, còn HDCP 2.x chỉ được khuyến nghị.</p>
+<p>Trong thực tế, lỗi hay gặp là trình điều khiển Wi-Fi hoặc đồ họa cũ, hoặc màn hình đích thiếu tính năng nhận Miracast. Nên cập nhật trình điều khiển từ trang hãng laptop trước khi nghi ngờ phần cứng.</p>
+<p><a href="https://technologyspot.vn/miracast-tren-laptop-chieu-man-hinh-khong-day/"><strong>Miracast trên laptop, chiếu màn hình không dây</strong></a> mô tả thêm cách kiểm tra máy có hỗ trợ bằng công cụ của Windows.</p>
+<h2>Auracast: một nguồn phát, nhiều tai nghe</h2>
+<p>Bluetooth SIG công bố Auracast ngày 08/06/2022. Đây là luồng âm thanh LE Audio dạng quảng bá, một thiết bị phát có thể gửi cho số lượng người nghe không giới hạn. Có ba vai trò: thiết bị phát, thiết bị thu và thiết bị hỗ trợ (assistant) giúp chọn luồng. Luồng có thể mở hoàn toàn hoặc mã hóa bằng khóa Broadcast_Code, nhập dưới dạng chữ hoặc quét mã QR. Mỗi thiết bị thu tự chỉnh âm lượng riêng.</p>
+<p>Để laptop phát được Auracast cần nhiều thứ cùng lúc. Chip Bluetooth phải có các tính năng của Bluetooth Core 5.2 và hỗ trợ Public Broadcast Profile. Codec LC3 là bắt buộc. Windows 11 phải từ bản 22H2 trở lên để có LE Audio, và tính năng Shared Audio cần bản 26100.8524 hoặc 26200.8524 trở lên. Trình điều khiển LE Audio của hãng máy phải được cài, và tai nghe cũng phải hỗ trợ LE Audio, có khả năng thu luồng quảng bá. Nhãn "Bluetooth 5.2" đơn thuần không đủ để khẳng định máy làm được điều này.</p>
+<p><a href="https://technologyspot.vn/auracast-tren-laptop-phat-toi-nhieu-tai-nghe/"><strong>Auracast trên laptop, phát tới nhiều tai nghe</strong></a> liệt kê thêm điều kiện về trình điều khiển và phiên bản Windows.</p>
+<h2>Wake-on-LAN: bật máy từ xa qua mạng</h2>
+<p>Wake-on-LAN gửi một gói tin đặc biệt gọi là magic packet. Gói gồm 6 byte FF, theo sau là 16 lần địa chỉ MAC của máy đích. Phần lặp địa chỉ dài 96 byte, cộng 6 byte đầu thành 102 byte. Gói có thể gửi dạng unicast, multicast hoặc broadcast. Chỉ cần sai một ký tự trong địa chỉ MAC là máy không thức dậy.</p>
+<p>Windows NDIS 6.20 liệt kê ba cách đánh thức: magic packet, khớp mẫu (pattern match) và phát hiện kết nối mạng (media connect). Theo bài KB 2776718 của Microsoft, Windows 10 chỉ hỗ trợ đánh thức qua mạng từ trạng thái ngủ S3 hoặc ngủ đông S4 do người dùng chủ động. Lệnh Shut down mặc định không đủ vì khởi động nhanh (fast startup) đưa máy vào trạng thái không nhận được gói.</p>
+<p>Ngoài ra cần bật tùy chọn Wake-on-LAN trong BIOS, bật cho phép đánh thức trong trình điều khiển card mạng, và để card mạng còn nguồn chờ. Cáp Ethernet ổn định hơn nhiều so với Wi-Fi cho việc này.</p>
+<p><a href="https://technologyspot.vn/wake-on-lan-laptop-bat-may-tu-xa-dieu-kien/"><strong>Wake-on-LAN laptop, bật máy từ xa và điều kiện</strong></a> đi qua các bước bật trong BIOS và Windows.</p>
+<h2>Bảng đối chiếu điều kiện cần kiểm</h2>
+<table>
+<thead><tr><th>Tính năng</th><th>Giao thức nền</th><th>Điều kiện chính</th><th>Cách kiểm tra</th></tr></thead>
+<tbody>
+<tr><td>Miracast</td><td>Wi-Fi Direct, H.264 qua RTSP</td><td>Wi-Fi 802.11n trở lên, WDDM 2.0 trở lên, mã hóa H.264 bằng phần cứng</td><td>Mở bảng Project của Windows xem có mục kết nối không dây</td></tr>
+<tr><td>Auracast</td><td>LE Audio, codec LC3</td><td>Windows 11 22H2 trở lên, trình điều khiển LE Audio, tai nghe thu được luồng</td><td>Xem Cài đặt Bluetooth và trang hãng laptop</td></tr>
+<tr><td>Wake-on-LAN</td><td>Magic packet</td><td>BIOS bật, card mạng cho phép đánh thức, máy ở S3 hoặc S4</td><td>Gửi thử từ máy khác trong cùng mạng LAN</td></tr>
+</tbody>
+</table>
+<h2>Thứ tự kiểm tra trước khi mua hay cấu hình</h2>
+<p>Đối với Miracast, kiểm tra thông số Wi-Fi và trình điều khiển đồ họa trước, vì đây là hai nơi hay thiếu nhất. Đối với Auracast, hỏi hãng laptop xem có trình điều khiển LE Audio cho đúng mẫu máy hay không, vì nhãn Bluetooth 5.2 không nói lên điều đó. Cuối cùng, với Wake-on-LAN, thử với cáp Ethernet trước, bật BIOS và trình điều khiển, rồi mới thử các trạng thái nguồn khác.</p>
+<p>Ba tính năng này đều dùng tốt khi biết chính xác điều kiện, và gây thất vọng khi chỉ dựa vào tên trên bảng thông số. Dành vài phút đọc lại danh sách phía trên trước khi chạy thử sẽ tiết kiệm nhiều lần cài lại trình điều khiển vô ích.</p>
+</article>
+<!--related-->
+<aside class="lq">
+<h2 class="lq-t">Bài cùng chủ đề</h2>
+<ul>
+<li><a href="../vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/">VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung</a></li>
+<li><a href="../mo-hinh-ai-nho-saluki-27b-granite-4-2-doc-thong-so-truoc-khi-tai/">Mô hình AI nhỏ Saluki 27B và Granite 4.2 - đọc thông số trước khi tải</a></li>
+</ul>
+</aside>
+<!--/related-->
+</main>
+<aside class="side"><section class="w w-about"><span class="av" aria-hidden="true">Q</span><div><h2 class="w-t">Quân</h2><p>Mình ghi lại cách đọc thông số chip, nguồn và AI cục bộ trên laptop đời 2025 và 2026.</p><a class="more" href="../../#ve-blog">Về blog</a></div></section><section class="w w-cats"><h2 class="w-t">Chủ đề</h2><ul><li><a href="../../#chu-de-ket-noi"><span>Kết nối</span></a></li><li><a href="../../#chu-de-nguon-nhiet"><span>Nguồn và nhiệt</span></a></li><li><a href="../../#chu-de-ai-cuc-bo"><span>AI cục bộ</span></a></li></ul></section></aside></div>
+<footer class="foot"><div class="wrap fo"><p class="fn">Ghi chép chip laptop</p><p>Nhật ký kỹ thuật cá nhân của Quân về laptop đời 2025 và 2026.</p><p class="sm">Năm 2026. Nội dung viết lại từ tài liệu công khai của hãng.</p></div></footer>
+</body>
+</html>
