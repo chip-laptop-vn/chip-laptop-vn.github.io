@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Enhanced Sign-in Security khóa chặt dữ liệu sinh trắc trong VBS</title>
+<meta name="description" content="Trước đây, Windows Hello tiêu chuẩn lưu trữ mã PIN và dữ liệu nhận diện cục bộ trên thiết bị nhưng luồng xử lý vẫn chia sẻ không gian bộ nhớ chung với hệ...">
+<link rel="canonical" href="https://chip-laptop-vn.github.io/bai-viet/enhanced-sign-in-security-khoa-chat-du-lieu-sinh-trac-trong-vbs/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css?v=a7b31697">
+<!--seo-->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Enhanced Sign-in Security khóa chặt dữ liệu sinh trắc trong VBS">
+<meta property="og:description" content="Trước đây, Windows Hello tiêu chuẩn lưu trữ mã PIN và dữ liệu nhận diện cục bộ trên thiết bị nhưng luồng xử lý vẫn chia sẻ không gian bộ nhớ chung với hệ...">
+<meta property="og:url" content="https://chip-laptop-vn.github.io/bai-viet/enhanced-sign-in-security-khoa-chat-du-lieu-sinh-trac-trong-vbs/">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Ghi chép chip laptop">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Enhanced Sign-in Security khóa chặt dữ liệu sinh trắc trong VBS", "description": "Trước đây, Windows Hello tiêu chuẩn lưu trữ mã PIN và dữ liệu nhận diện cục bộ trên thiết bị nhưng luồng xử lý vẫn chia sẻ không gian bộ nhớ chung với hệ...", "datePublished": "2026-11-13", "dateModified": "2026-11-13", "inLanguage": "vi", "mainEntityOfPage": "https://chip-laptop-vn.github.io/bai-viet/enhanced-sign-in-security-khoa-chat-du-lieu-sinh-trac-trong-vbs/", "author": {"@type": "Organization", "name": "Ghi chép chip laptop"}, "publisher": {"@type": "Organization", "name": "Ghi chép chip laptop"}}</script>
+<!--/seo-->
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<header class="top"><div class="wrap bar"><a class="brand" href="../../"><span class="mark" aria-hidden="true">C</span><span class="bn">Ghi chép chip laptop</span><span class="tag">Nhật ký kỹ thuật của Quân</span></a><nav class="nav" aria-label="Chính"><a href="../../">Trang chủ</a><a href="../../#chu-de-ket-noi">Kết nối</a><a href="../../#chu-de-nguon-nhiet">Nguồn và nhiệt</a><a href="../../#chu-de-ai-cuc-bo">AI cục bộ</a><a href="../../#ve-blog">Về blog</a></nav></div></header>
+<div class="wrap lay"><main id="main" class="col post">
+<p class="crumb"><a href="../../">Trang chủ</a><span aria-hidden="true"> / </span><span>Kết nối</span></p>
+<article>
+
+
+<h1>Enhanced Sign-in Security khóa chặt dữ liệu sinh trắc trong VBS</h1>
+<p>Trước đây, Windows Hello tiêu chuẩn lưu trữ mã PIN và dữ liệu nhận diện cục bộ trên thiết bị nhưng luồng xử lý vẫn chia sẻ không gian bộ nhớ chung với hệ điều hành. <strong>Enhanced Sign-in Security</strong> (ESS) trên Windows 11 nâng cấp kiến trúc này bằng cách chuyển toàn bộ quy trình xác thực vào Virtualization-based Security (VBS) và gắn kết trực tiếp với chip TPM 2.0.</p>
+<p>Bản chất của ESS là thiết lập một ranh giới cô lập tuyệt đối cho nhận diện khuôn mặt và vân tay. Mọi thuật toán so khớp, mẫu sinh trắc gốc và khóa giải mã đều chạy trong môi trường ảo hóa do trình giám sát máy ảo quản lý, tách rời hoàn toàn khỏi phần còn lại của hệ điều hành.</p>
+<p>Nhờ phân vùng này, mã độc chạy ngầm ở quyền quản trị cao nhất trên Windows cũng không thể đọc trộm hay tiêm dữ liệu giả vào tiến trình sinh trắc. Khi việc đối soát hoàn tất trong vùng an toàn, hệ thống mới thông qua kênh truyền bảo mật tới TPM để mở khóa phiên làm việc.</p>
+<h2 id="xac-thuc-khuon-mat-qua-camera-ir-doi-hoi-cau-hinh-firmware-rieng">Xác thực khuôn mặt qua camera IR đòi hỏi cấu hình firmware riêng</h2>
+<p>Phần cứng quyết định tác vụ này gồm camera hồng ngoại (IR) đạt chuẩn ESS, vi xử lý 64-bit hỗ trợ ảo hóa phần cứng (Intel VT-x hoặc AMD-V kèm SLAT, IOMMU) và Secure Boot. Điểm then chốt nằm ở bảng ACPI SDEV mà nhà sản xuất phải cấu hình sẵn trong firmware bo mạch chủ.</p>
+<p>Khi người dùng đăng nhập, trình ảo hóa cấp phát một vùng nhớ riêng biệt. Camera IR đẩy dữ liệu hình ảnh trực tiếp vào không gian này mà không đi qua các bộ đệm chung của Windows. Mẫu khuôn mặt được tính toán bên trong VBS rồi mã hóa bằng khóa nội bộ do VBS nắm giữ.</p>
+<p>Giới hạn thực tế nằm ở tính khép kín: khi ESS kích hoạt, toàn bộ camera rời cắm ngoài qua cổng USB đều bị vô hiệu hóa tính năng đăng nhập khuôn mặt. Hệ thống từ chối các thiết bị ngoại vi không có định danh ACPI SDEV tích hợp sâu ở cấp độ phần cứng.</p>
+<h2 id="quet-van-tay-bat-buoc-xu-ly-so-khop-truc-tiep-tren-chip">Quét vân tay bắt buộc xử lý so khớp trực tiếp trên chip</h2>
+<p>Đối với vân tay, phần cứng quyết định là cảm biến dạng match-on-chip (MoC) tích hợp sẵn chứng chỉ bảo mật của Microsoft từ khâu xuất xưởng.</p>
+<p>Cảm biến này tự thu nhận, trích xuất đặc trưng và so khớp dấu vân tay ngay trên vi xử lý tích hợp của cụm cảm biến, thay vì gửi hình ảnh thô về CPU máy tính. Tín hiệu xác nhận sau đó được chuyển qua kênh an toàn tới thành phần sinh trắc trong VBS để kích hoạt khóa Windows Hello trong TPM 2.0.</p>
+<p>Giới hạn phần cứng ở đây rất rõ ràng: các dòng laptop dùng cảm biến so khớp trên máy chủ (match-on-host) đời cũ sẽ không thể kích hoạt ESS. Theo phân tích trên <a href="https://technologyspot.vn/enhanced-sign-in-security-laptop-windows-11/"><strong>technologyspot.vn</strong></a>, cơ chế này triệt tiêu nguy cơ trích xuất dữ liệu từ RAM nhưng đồng thời loại bỏ hoàn toàn khả năng thay thế linh kiện từ các nhà cung cấp linh kiện giá rẻ.</p>
+<h2 id="kiem-tra-trang-thai-trustlet-va-quy-trinh-xu-ly-loi-sinh-trac">Kiểm tra trạng thái trustlet và quy trình xử lý lỗi sinh trắc</h2>
+<p>Người dùng có thể giám sát trạng thái cô lập của hệ thống qua ba bước kỹ thuật cụ thể:</p>
+<ul>
+<li>Mở Run, nhập `ms-settings:signinoptions` để kiểm tra mục Enhanced sign-in security đang ở trạng thái On.</li>
+<li>Mở System Information, xác nhận dòng Virtualization-based security hiển thị Running, đồng thời kiểm tra danh sách tiến trình chạy ngầm xem có sự hiện diện của hai trustlet `bioiso.exe` và `ngciso.exe`.</li>
+<li>Mở Event Viewer theo đường dẫn `Applications and Services Logs &gt; Microsoft &gt; Windows &gt; Biometrics &gt; Operational`. Tìm sự kiện mã 1108; nếu dòng mô tả ghi nhận cảm biến chạy trong tiến trình Virtual Secure Mode thì ESS đang hoạt động chuẩn xác.</li>
+</ul>
+<p>Trường hợp cảm biến sinh trắc bị đơ hoặc mất nhận diện sau khi cập nhật hệ thống, giải pháp dứt điểm là xóa mã PIN hiện tại, mở Command Prompt với quyền quản trị và khởi động lại dịch vụ bằng lệnh:</p>
+<p>`net stop wbiosrvc &amp;&amp; net start wbiosrvc`</p>
+<p>ESS xác lập chuẩn mực phần cứng mới cho laptop Windows 11, biến cảm biến sinh trắc từ tiện ích nhận diện đơn thuần thành một phân vùng điện toán độc lập gắn chặt với chip bảo mật.</p>
+<p class="gia">Đăng ngày 13/11/2026</p>
+</article>
+<!--related-->
+<aside class="lq">
+<h2 class="lq-t">Bài cùng chủ đề</h2>
+<ul>
+<li><a href="../vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/">VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung</a></li>
+<li><a href="../mo-hinh-ai-nho-saluki-27b-granite-4-2-doc-thong-so-truoc-khi-tai/">Mô hình AI nhỏ Saluki 27B và Granite 4.2 - đọc thông số trước khi tải</a></li>
+</ul>
+</aside>
+<!--/related-->
+</main>
+<aside class="side"><section class="w w-about"><span class="av" aria-hidden="true">Q</span><div><h2 class="w-t">Quân</h2><p>Mình ghi lại cách đọc thông số chip, nguồn và AI cục bộ trên laptop đời 2025 và 2026.</p><a class="more" href="../../#ve-blog">Về blog</a></div></section><section class="w w-cats"><h2 class="w-t">Chủ đề</h2><ul><li><a href="../../#chu-de-ket-noi"><span>Kết nối</span></a></li><li><a href="../../#chu-de-nguon-nhiet"><span>Nguồn và nhiệt</span></a></li><li><a href="../../#chu-de-ai-cuc-bo"><span>AI cục bộ</span></a></li></ul></section></aside></div>
+<footer class="foot"><div class="wrap fo"><p class="fn">Ghi chép chip laptop</p><p>Nhật ký kỹ thuật cá nhân của Quân về laptop đời 2025 và 2026.</p><p class="sm">Năm 2026. Nội dung viết lại từ tài liệu công khai của hãng.</p></div></footer>
+</body>
+</html>
