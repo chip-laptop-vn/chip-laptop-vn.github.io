@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Auto SR tăng fps game nhưng kén chip và giới hạn API</title>
+<meta name="description" content="Game thủ chơi các tựa game eSports hoặc game nhập vai cũ trên laptop văn phòng mỏng nhẹ thường vấp phải giới hạn đồ họa tích hợp. Auto SR (Automatic Super...">
+<link rel="canonical" href="https://chip-laptop-vn.github.io/bai-viet/auto-sr-tang-fps-game-nhung-ken-chip-va-gioi-han-api/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css?v=a7b31697">
+<!--seo-->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Auto SR tăng fps game nhưng kén chip và giới hạn API">
+<meta property="og:description" content="Game thủ chơi các tựa game eSports hoặc game nhập vai cũ trên laptop văn phòng mỏng nhẹ thường vấp phải giới hạn đồ họa tích hợp. Auto SR (Automatic Super...">
+<meta property="og:url" content="https://chip-laptop-vn.github.io/bai-viet/auto-sr-tang-fps-game-nhung-ken-chip-va-gioi-han-api/">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Ghi chép chip laptop">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Auto SR tăng fps game nhưng kén chip và giới hạn API", "description": "Game thủ chơi các tựa game eSports hoặc game nhập vai cũ trên laptop văn phòng mỏng nhẹ thường vấp phải giới hạn đồ họa tích hợp. Auto SR (Automatic Super...", "datePublished": "2026-11-15", "dateModified": "2026-11-15", "inLanguage": "vi", "mainEntityOfPage": "https://chip-laptop-vn.github.io/bai-viet/auto-sr-tang-fps-game-nhung-ken-chip-va-gioi-han-api/", "author": {"@type": "Organization", "name": "Ghi chép chip laptop"}, "publisher": {"@type": "Organization", "name": "Ghi chép chip laptop"}}</script>
+<!--/seo-->
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<header class="top"><div class="wrap bar"><a class="brand" href="../../"><span class="mark" aria-hidden="true">C</span><span class="bn">Ghi chép chip laptop</span><span class="tag">Nhật ký kỹ thuật của Quân</span></a><nav class="nav" aria-label="Chính"><a href="../../">Trang chủ</a><a href="../../#chu-de-ket-noi">Kết nối</a><a href="../../#chu-de-nguon-nhiet">Nguồn và nhiệt</a><a href="../../#chu-de-ai-cuc-bo">AI cục bộ</a><a href="../../#ve-blog">Về blog</a></nav></div></header>
+<div class="wrap lay"><main id="main" class="col post">
+<p class="crumb"><a href="../../">Trang chủ</a><span aria-hidden="true"> / </span><span>Kết nối</span></p>
+<article>
+
+
+
+<h1>Auto SR tăng fps game nhưng kén chip và giới hạn API</h1>
+<p>Game thủ chơi các tựa game eSports hoặc game nhập vai cũ trên laptop văn phòng mỏng nhẹ thường vấp phải giới hạn đồ họa tích hợp. <strong>Auto SR</strong> (Automatic Super Resolution) trên Windows 11 giải quyết bài toán này bằng cách cho game kết xuất ở độ phân giải thấp (khoảng 700p đến 800p) để giảm tải cho iGPU, sau đó dùng mô hình mạng nơ-ron tích chập (CNN) chạy trực tiếp trên NPU nhằm nội suy khung hình lên độ phân giải hiển thị sắc nét tương đương hoặc hơn 1080p gốc.</p>
+<p>Để kích hoạt nhanh, người dùng mở game, nhấn tổ hợp Win + G để gọi Xbox Game Bar, chọn Widgets &gt; Display &gt; Graphics rồi bật công tắc Auto SR kèm tính năng hiển thị trạng thái trong game. Trong phần cài đặt hình ảnh của game, cần chuyển chế độ hiển thị sang Fullscreen hoặc Exclusive Fullscreen và chọn độ phân giải đầu vào nằm trong ngưỡng tương thích.</p>
+<p>Toàn bộ quá trình xử lý diễn ra cục bộ, không gửi dữ liệu hình ảnh lên máy chủ đám mây. Tính năng này giảm tải nhiệt cho GPU tích hợp, nhưng bắt buộc máy phải đạt chuẩn Copilot+ PC và cài đặt gói Auto Super Resolution Package từ Microsoft Store.</p>
+<p>Vấn đề này bên <a href="https://www.reviewlaptop.vn/review-thinkpad-t1g-gen-8-2026/"><strong>ReviewLaptop</strong></a> cũng có một bài mổ xẻ riêng, ai cần chi tiết hơn thì đọc thêm ở đó.</p>
+<h2 id="tai-tao-khung-hinh-game-cu-o-do-phan-giai-800p">Tái tạo khung hình game cũ ở độ phân giải 800p</h2>
+<p>Phần cứng quyết định tốc độ ở tác vụ này là NPU thay vì GPU. Điểm khác biệt cốt lõi so với DLSS, FSR hay XeSS nằm ở việc Auto SR không đòi hỏi nhà phát triển phải tích hợp mã nguồn trước như vector chuyển động hay MIP bias. Đổi lại, Windows phải chạy một mô hình CNN lớn hơn trên NPU để tự phán đoán chi tiết điểm ảnh.</p>
+<p>Năng lực xử lý của NPU quyết định trực tiếp việc khung hình có giữ được tính ổn định hay không. Chẳng hạn, Qualcomm Snapdragon X X1-26-100 (8 nhân/8 luồng, TDP 23W, Cinebench R23 đạt 975 điểm đơn nhân và 7446 điểm đa nhân, Geekbench 6 đạt 2123.5 đơn nhân / 10584 đa nhân, PassMark 16442) có NPU Hexagon 45 TOPS, xử lý tốt đầu vào lý tưởng ở mức 800p. Với thế hệ mới hơn như Qualcomm Snapdragon X2 Plus X2P-64-100 (10 nhân/10 luồng, TDP 22W, Geekbench 6 đạt 2878 đơn nhân và 12923 đa nhân), NPU được nâng lên 80 TOPS, mở rộng dư địa tính toán cho các khung hình phức tạp.</p>
+<p>Giới hạn thực tế nằm ở độ tương thích phần mềm. Theo dữ liệu phân tích tại <a href="https://technologyspot.vn/auto-sr-la-gi-bat-sieu-phan-giai-ai-cho-game/"><strong>TechnologySpot</strong></a>, Auto SR chỉ chấp nhận các tựa game chạy nhị phân x64 hoặc Arm64 dùng API DirectX 10 trở lên. Các tựa game 32-bit (x86) cùng những game viết trên nền tảng OpenGL hay Vulkan hoàn toàn không được hỗ trợ.</p>
+<h2 id="dong-bo-hien-thi-va-duy-tri-do-net-tren-man-hinh-1080p">Đồng bộ hiển thị và duy trì độ nét trên màn hình 1080p</h2>
+<p>Phần cứng phụ trách tác vụ này là bộ điều khiển hiển thị kết hợp với hệ điều hành Windows 11 bản 24H2. Khi game khởi chạy, Windows tự động hạ độ phân giải màn hình về mức tương ứng với đầu vào của mô hình AI, sau đó thuật toán nâng khung hình lên độ phân giải thực của tấm nền (tối thiểu 1080p).</p>
+<p>Giới hạn của khâu này nằm ở sự phụ thuộc vào driver NPU và phiên bản vi xử lý. Dòng chip Intel Core Ultra Series 3 hoặc Arc G3 với NPU AI Boost nhận diện đầu vào từ 800p đến 1080p, trong khi AMD Ryzen AI nhận dải 720p đến 1080p. Nếu driver chưa cập nhật qua Windows Update, tính năng sẽ không thể can thiệp vào bộ đệm khung hình.</p>
+<p>Checklist kiểm tra thực tế trước khi chơi:</p>
+<ul>
+<li>Xác nhận hệ điều hành là Windows 11 24H2 và đã tải gói Auto Super Resolution Package tương ứng trên Microsoft Store.</li>
+<li>Đảm bảo game chạy native x64, Arm64 hoặc giả lập x64, dùng DirectX 11/12 hoặc DirectX 10.</li>
+<li>Cài đặt game ở chế độ Exclusive Fullscreen, không để chế độ Borderless Windowed.</li>
+<li>Kiểm tra tab Graphics trong Game Bar để xem nguyên nhân cụ thể nếu tính năng chưa kích hoạt.</li>
+</ul>
+<p>Auto SR cải thiện độ mượt nhưng phụ thuộc chặt vào tương thích API.</p>
+<p class="gia">Đăng ngày 15/11/2026</p>
+</article>
+<!--related-->
+<aside class="lq">
+<h2 class="lq-t">Bài cùng chủ đề</h2>
+<ul>
+<li><a href="../vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/">VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung</a></li>
+<li><a href="../mo-hinh-ai-nho-saluki-27b-granite-4-2-doc-thong-so-truoc-khi-tai/">Mô hình AI nhỏ Saluki 27B và Granite 4.2 - đọc thông số trước khi tải</a></li>
+</ul>
+</aside>
+<!--/related-->
+</main>
+<aside class="side"><section class="w w-about"><span class="av" aria-hidden="true">Q</span><div><h2 class="w-t">Quân</h2><p>Mình ghi lại cách đọc thông số chip, nguồn và AI cục bộ trên laptop đời 2025 và 2026.</p><a class="more" href="../../#ve-blog">Về blog</a></div></section><section class="w w-cats"><h2 class="w-t">Chủ đề</h2><ul><li><a href="../../#chu-de-ket-noi"><span>Kết nối</span></a></li><li><a href="../../#chu-de-nguon-nhiet"><span>Nguồn và nhiệt</span></a></li><li><a href="../../#chu-de-ai-cuc-bo"><span>AI cục bộ</span></a></li></ul></section></aside></div>
+<footer class="foot"><div class="wrap fo"><p class="fn">Ghi chép chip laptop</p><p>Nhật ký kỹ thuật cá nhân của Quân về laptop đời 2025 và 2026.</p><p class="sm">Năm 2026. Nội dung viết lại từ tài liệu công khai của hãng.</p></div></footer>
+</body>
+</html>
