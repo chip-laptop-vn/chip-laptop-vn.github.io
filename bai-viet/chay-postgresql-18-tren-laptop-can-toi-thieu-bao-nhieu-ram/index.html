@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chạy PostgreSQL 18 trên laptop cần tối thiểu bao nhiêu RAM</title>
+<meta name="description" content="Việc dựng hệ quản trị cơ sở dữ liệu cục bộ không đòi hỏi phần cứng đồ sộ. PostgreSQL 18 chỉ yêu cầu bộ xử lý tối thiểu 1 GHz cùng 2 GB RAM để khởi chạy...">
+<link rel="canonical" href="https://chip-laptop-vn.github.io/bai-viet/chay-postgresql-18-tren-laptop-can-toi-thieu-bao-nhieu-ram/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css?v=a7b31697">
+<!--seo-->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chạy PostgreSQL 18 trên laptop cần tối thiểu bao nhiêu RAM">
+<meta property="og:description" content="Việc dựng hệ quản trị cơ sở dữ liệu cục bộ không đòi hỏi phần cứng đồ sộ. PostgreSQL 18 chỉ yêu cầu bộ xử lý tối thiểu 1 GHz cùng 2 GB RAM để khởi chạy...">
+<meta property="og:url" content="https://chip-laptop-vn.github.io/bai-viet/chay-postgresql-18-tren-laptop-can-toi-thieu-bao-nhieu-ram/">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Ghi chép chip laptop">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Chạy PostgreSQL 18 trên laptop cần tối thiểu bao nhiêu RAM", "description": "Việc dựng hệ quản trị cơ sở dữ liệu cục bộ không đòi hỏi phần cứng đồ sộ. PostgreSQL 18 chỉ yêu cầu bộ xử lý tối thiểu 1 GHz cùng 2 GB RAM để khởi chạy...", "datePublished": "2026-11-20", "dateModified": "2026-11-20", "inLanguage": "vi", "mainEntityOfPage": "https://chip-laptop-vn.github.io/bai-viet/chay-postgresql-18-tren-laptop-can-toi-thieu-bao-nhieu-ram/", "author": {"@type": "Organization", "name": "Ghi chép chip laptop"}, "publisher": {"@type": "Organization", "name": "Ghi chép chip laptop"}}</script>
+<!--/seo-->
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<header class="top"><div class="wrap bar"><a class="brand" href="../../"><span class="mark" aria-hidden="true">C</span><span class="bn">Ghi chép chip laptop</span><span class="tag">Nhật ký kỹ thuật của Quân</span></a><nav class="nav" aria-label="Chính"><a href="../../">Trang chủ</a><a href="../../#chu-de-ket-noi">Kết nối</a><a href="../../#chu-de-nguon-nhiet">Nguồn và nhiệt</a><a href="../../#chu-de-ai-cuc-bo">AI cục bộ</a><a href="../../#ve-blog">Về blog</a></nav></div></header>
+<div class="wrap lay"><main id="main" class="col post">
+<p class="crumb"><a href="../../">Trang chủ</a><span aria-hidden="true"> / </span><span>Kết nối</span></p>
+<article>
+
+
+
+
+<h1>Chạy PostgreSQL 18 trên laptop cần tối thiểu bao nhiêu RAM</h1>
+<p>Việc dựng hệ quản trị cơ sở dữ liệu cục bộ không đòi hỏi phần cứng đồ sộ. PostgreSQL 18 chỉ yêu cầu bộ xử lý tối thiểu 1 GHz cùng 2 GB RAM để khởi chạy máy chủ trên môi trường thử nghiệm cá nhân.</p>
+<p>Ở thiết lập mặc định của bản 18.7, hệ thống tiêu tốn tài nguyên rất dè dặt: vùng đệm `shared_buffers` dừng ở mức 128 MB và `work_mem` cho mỗi tác vụ sắp xếp, băm dữ liệu là 4 MB. Tuy nhiên, việc vận hành một hệ quản trị dữ liệu quan hệ ngay trên laptop phục vụ học tập đòi hỏi người dùng nắm rõ mức chiếm dụng bộ nhớ để phân bổ hợp lý giữa phần mềm nền và hệ điều hành.</p>
+<p>Quy trình triển khai tiêu chuẩn bao gồm gói cài đặt EDB chứa máy chủ, bộ công cụ dòng lệnh và pgAdmin 4 lắng nghe trên cổng 5432 của địa chỉ nội bộ localhost.</p>
+<p>Cấu hình PostgreSQL 18 trên máy trạm cá nhân phụ thuộc vào sự tương thích giữa kiến trúc phần mềm và khả năng cấp phát tài nguyên của hệ điều hành. Dưới đây là các thông số then chốt cần ghi nhận khi thiết lập.</p>
+<h2 id="nen-tang-phan-cung-va-han-muc-bo-nho">Nền tảng phần cứng và hạn mức bộ nhớ</h2>
+<ul>
+<li><strong>Tài nguyên tối thiểu</strong>: Bộ xử lý 1 GHz, 2 GB RAM và 512 MB dung lượng ổ đĩa khả dụng theo tài liệu của EDB. Mức dung lượng ổ đĩa này mới chỉ đủ cho mã nguồn chương trình, chưa tính khối lượng bảng dữ liệu phát sinh.</li>
+<li><strong>Kiến trúc hệ điều hành</strong>: Trình cài đặt EDB chỉ hỗ trợ nền tảng 64-bit (Windows x86-64), tương thích từ Windows Server 2022/2025 hoặc các bản Windows máy khách tương đương; trên macOS yêu cầu phiên bản 13 trở lên cho cả vi xử lý Intel lẫn Apple Silicon.</li>
+<li><strong>Tham số bộ nhớ mặc định</strong>: Mức `shared_buffers` 128 MB là ngưỡng an toàn để dịch vụ khởi động trên máy cấu hình thấp mà không xung đột với bộ nhớ đệm trang của nhân hệ điều hành. Cơ chế I/O bất đồng bộ mới với tham số `io_method = worker` trên bản 18 giúp cải thiện hiệu năng quét bảng tuần tự và tiến trình dọn rác VACUUM.</li>
+</ul>
+<h2 id="bo-cai-dat-edb-va-phan-tang-phan-mem">Bộ cài đặt EDB và phân tầng phần mềm</h2>
+<ul>
+<li><strong>Thành phần lõi</strong>: Trình cài đặt phân chia bốn nhóm gồm PostgreSQL Server, Command Line Tools (`psql`, `pg_dump`, `pg_restore`), pgAdmin 4 và Stack Builder. Người dùng dòng lệnh có thể lược bỏ pgAdmin và Stack Builder để tiết kiệm không gian lưu trữ.</li>
+<li><strong>Mã hóa và kiểm tra toàn vẹn</strong>: Tiến trình khởi tạo cụm dữ liệu `initdb` bật sẵn kiểm tra tổng (data checksums). Chuỗi xác thực mật khẩu mặc định chuyển sang chuẩn scram-sha-256 do cơ chế băm MD5 cũ đã bị loại bỏ.</li>
+</ul>
+<h2 id="cong-dich-vu-va-ket-noi-pgadmin">Cổng dịch vụ và kết nối pgAdmin</h2>
+<ul>
+<li><strong>Địa chỉ lắng nghe</strong>: Tham số `listen_addresses` giữ mặc định localhost nhằm ngăn các thiết bị ngoài mạng cục bộ truy cập trái phép khi laptop kết nối Wi-Fi công cộng.</li>
+<li><strong>Phân định cổng</strong>: Cổng 5432 là cổng dịch vụ mặc định. Phân tích chi tiết từ <a href="https://technologyspot.vn/postgresql-tren-laptop-cai-dat-cau-hinh-ram/"><strong>TechnologySpot</strong></a> cho thấy việc giữ nguyên cổng này chỉ khả thi khi máy chưa từng cài bản PostgreSQL trước đó, tránh tình trạng hai tiến trình tranh chấp socket.</li>
+</ul>
+<h2 id="diem-nghen-tuong-thich-va-checklist-chuan-bi">Điểm nghẽn tương thích và checklist chuẩn bị</h2>
+<p>Nhược điểm thực tế dễ gây gián đoạn nhất nằm ở khả năng xử lý chuỗi ký tự của bộ cài EDB: trình cài đặt không hỗ trợ đầy đủ ký tự nhiều byte (multi-byte) trong đường dẫn. Nếu tên tài khoản người dùng Windows hoặc tên máy tính chứa ký tự tiếng Việt có dấu, quá trình khởi tạo cụm dữ liệu sẽ thất bại ngay lập tức.</p>
+<p>Checklist cần thực hiện trước khi bấm tệp cài đặt:</p>
+<ul>
+<li>Đổi tên tài khoản đăng nhập Windows sang chữ không dấu nếu đang dùng tên tiếng Việt.</li>
+<li>Mở cửa sổ dòng lệnh kiểm tra xem cổng 5432 có đang bị ứng dụng khác chiếm giữ hay không.</li>
+<li>Chọn thư mục dữ liệu (Data Directory) sang phân vùng ổ đĩa còn nhiều dung lượng trống nếu laptop có hai ổ cứng riêng biệt.</li>
+<li>Ghi lại mật khẩu của superuser, vì mật khẩu này dùng chung cho tài khoản dịch vụ hệ thống `postgres` chạy nền.</li>
+</ul>
+<p>Khởi đầu từ một máy chủ cục bộ không cần cấu hình đồ sộ, việc nắm vững từng thông số từ cấp độ bộ nhớ đến cổng dịch vụ sẽ bảo đảm môi trường kiểm thử luôn ổn định và tách biệt hoàn toàn với hạ tầng bên ngoài.</p>
+<p class="gia">Đăng ngày 20/11/2026</p>
+</article>
+<!--related-->
+<aside class="lq">
+<h2 class="lq-t">Bài cùng chủ đề</h2>
+<ul>
+<li><a href="../vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/">VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung</a></li>
+<li><a href="../mo-hinh-ai-nho-saluki-27b-granite-4-2-doc-thong-so-truoc-khi-tai/">Mô hình AI nhỏ Saluki 27B và Granite 4.2 - đọc thông số trước khi tải</a></li>
+</ul>
+</aside>
+<!--/related-->
+</main>
+<aside class="side"><section class="w w-about"><span class="av" aria-hidden="true">Q</span><div><h2 class="w-t">Quân</h2><p>Mình ghi lại cách đọc thông số chip, nguồn và AI cục bộ trên laptop đời 2025 và 2026.</p><a class="more" href="../../#ve-blog">Về blog</a></div></section><section class="w w-cats"><h2 class="w-t">Chủ đề</h2><ul><li><a href="../../#chu-de-ket-noi"><span>Kết nối</span></a></li><li><a href="../../#chu-de-nguon-nhiet"><span>Nguồn và nhiệt</span></a></li><li><a href="../../#chu-de-ai-cuc-bo"><span>AI cục bộ</span></a></li></ul></section></aside></div>
+<footer class="foot"><div class="wrap fo"><p class="fn">Ghi chép chip laptop</p><p>Nhật ký kỹ thuật cá nhân của Quân về laptop đời 2025 và 2026.</p><p class="sm">Năm 2026. Nội dung viết lại từ tài liệu công khai của hãng.</p></div></footer>
+</body>
+</html>
