@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>35.000 lệnh đọc mỗi giây từ SSD NVMe đổi cách game nạp cảnh</title>
+<meta name="description" content="Giữa một phân cảnh thế giới mở dày đặc chi tiết, việc xoay nhanh góc nhìn thường kéo theo hiện tượng khựng khung hình nếu hệ thống không kịp nạp texture...">
+<link rel="canonical" href="https://chip-laptop-vn.github.io/bai-viet/35-000-lenh-doc-moi-giay-tu-ssd-nvme-doi-cach-game-nap-canh/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css?v=a7b31697">
+<!--seo-->
+<meta property="og:type" content="article">
+<meta property="og:title" content="35.000 lệnh đọc mỗi giây từ SSD NVMe đổi cách game nạp cảnh">
+<meta property="og:description" content="Giữa một phân cảnh thế giới mở dày đặc chi tiết, việc xoay nhanh góc nhìn thường kéo theo hiện tượng khựng khung hình nếu hệ thống không kịp nạp texture...">
+<meta property="og:url" content="https://chip-laptop-vn.github.io/bai-viet/35-000-lenh-doc-moi-giay-tu-ssd-nvme-doi-cach-game-nap-canh/">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Ghi chép chip laptop">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "35.000 lệnh đọc mỗi giây từ SSD NVMe đổi cách game nạp cảnh", "description": "Giữa một phân cảnh thế giới mở dày đặc chi tiết, việc xoay nhanh góc nhìn thường kéo theo hiện tượng khựng khung hình nếu hệ thống không kịp nạp texture...", "datePublished": "2026-11-21", "dateModified": "2026-11-21", "inLanguage": "vi", "mainEntityOfPage": "https://chip-laptop-vn.github.io/bai-viet/35-000-lenh-doc-moi-giay-tu-ssd-nvme-doi-cach-game-nap-canh/", "author": {"@type": "Organization", "name": "Ghi chép chip laptop"}, "publisher": {"@type": "Organization", "name": "Ghi chép chip laptop"}}</script>
+<!--/seo-->
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<header class="top"><div class="wrap bar"><a class="brand" href="../../"><span class="mark" aria-hidden="true">C</span><span class="bn">Ghi chép chip laptop</span><span class="tag">Nhật ký kỹ thuật của Quân</span></a><nav class="nav" aria-label="Chính"><a href="../../">Trang chủ</a><a href="../../#chu-de-ket-noi">Kết nối</a><a href="../../#chu-de-nguon-nhiet">Nguồn và nhiệt</a><a href="../../#chu-de-ai-cuc-bo">AI cục bộ</a><a href="../../#ve-blog">Về blog</a></nav></div></header>
+<div class="wrap lay"><main id="main" class="col post">
+<p class="crumb"><a href="../../">Trang chủ</a><span aria-hidden="true"> / </span><span>Kết nối</span></p>
+<article>
+
+
+
+
+<h1>35.000 lệnh đọc mỗi giây từ SSD NVMe đổi cách game nạp cảnh</h1>
+<p>Giữa một phân cảnh thế giới mở dày đặc chi tiết, việc xoay nhanh góc nhìn thường kéo theo hiện tượng khựng khung hình nếu hệ thống không kịp nạp texture độ phân giải cao vào bộ nhớ đồ họa. Điểm nghẽn này không còn nằm ở tốc độ đọc tuần tự của ổ cứng, mà nằm ở đường truyền trung gian giữa các linh kiện phần cứng.</p>
+<p><strong>DirectStorage</strong> là bộ giao diện lập trình ứng dụng (API) thuộc họ DirectX do Microsoft phát triển, cho phép trò chơi gửi hàng loạt yêu cầu đọc dữ liệu theo lô trực tiếp từ SSD NVMe và chuyển toàn bộ khâu giải nén tài nguyên sang card đồ họa thông qua thuật toán GDeflate (từ bản 1.1). Về bản chất, đây là giải pháp nạp tắt: dữ liệu đồ họa đi thẳng từ thiết bị lưu trữ tới GPU mà không cần CPU làm trạm trung chuyển giải nén.</p>
+<p>Để kích hoạt cơ chế này, hệ thống cần đáp ứng đồng thời ba điều kiện phần cứng và phần mềm: ổ lưu trữ thể rắn chuẩn NVMe, hệ điều hành Windows 10 hoặc Windows 11, cùng một GPU hỗ trợ DirectX 12 tương thích Shader Model 6.0. Quan trọng hơn cả, nhà phát triển phải chủ động tích hợp API này vào mã nguồn của trò chơi; nếu không có bản vá hỗ trợ, máy vẫn vận hành theo phương thức truyền thống.</p>
+<h2 id="co-che-doc-tuan-tu-cu-doi-dau-hang-doi-song-song-the-he-moi">Cơ chế đọc tuần tự cũ đối đầu hàng đợi song song thế hệ mới</h2>
+<p>Ở các thế hệ game trước đây, ngân sách băng thông truyền tài nguyên chỉ dao động quanh mức 50 MB/s, tương đương vài trăm yêu cầu đọc mỗi giây với các khối dữ liệu 64 KB. Chuỗi xử lý cũ vận hành tuần tự qua hàm ReadFile: hệ thống gửi từng lệnh từ ổ cứng vào RAM hệ thống, bắt CPU giải nén rồi mới chép ngược sang VRAM của card đồ họa. Khi ổ SSD NVMe đạt tốc độ vài GB/s, số lượng yêu cầu đọc vọt lên hàng chục nghìn lượt mỗi giây, biến CPU thành nút thắt cổ chai và lãng phí băng thông bus hệ thống.</p>
+<p>Kiến trúc DirectStorage giải quyết áp lực này nhờ khai thác trực tiếp hàng đợi phần cứng của giao thức NVMe. Thay vì xử lý đơn lẻ, API gom các gói dữ liệu song song và cho phép engine game tự quyết định thời điểm nhận thông báo hoàn tất. Theo phân tích cấu trúc luồng dữ liệu trên <a href="https://technologyspot.vn/directstorage-la-gi-gpu-giai-nen-du-lieu-game/"><strong>TechnologySpot</strong></a>, kiến trúc Xbox Velocity trên Xbox Series X từng cần tới hơn 35.000 yêu cầu đọc mỗi giây ở khối 64 KB để khai thác trọn vẹn mức băng thông 2,4 GB/s của ổ NVMe tùy biến, điều mà các hàm đọc tuần tự cũ không thể kham nổi nếu không làm tràn tải CPU.</p>
+<h2 id="gioi-han-phan-cung-va-nang-luc-giai-nen-song-song-tren-gpu">Giới hạn phần cứng và năng lực giải nén song song trên GPU</h2>
+<p>Bước chuyển quan trọng nhất xuất hiện từ phiên bản DirectStorage 1.1 khi Microsoft bổ sung định dạng nén GDeflate. Thay vì để các nhân CPU xử lý tuần tự tệp nén hàng trăm gigabyte, tác vụ giải nén được giao thẳng cho hàng nghìn nhân tính toán song song trên GPU. Thử nghiệm từ NVIDIA cho thấy băng thông truyền dữ liệu không nén từng bị chặn ở ngưỡng khoảng 3 GB/s do giới hạn bus PCIe Gen3; trong khi đó, ổ NVMe chuẩn PCIe Gen3 hoặc Gen4 phổ thông có thể đẩy tốc độ nạp lên tới 7 GB/s, đủ để lấp đầy 24 GB bộ nhớ đồ họa chỉ trong hơn 3 giây.</p>
+<p>Tuy nhiên, công nghệ này tồn tại nhược điểm thực tế về phạm vi can thiệp: DirectStorage chỉ phục vụ duy nhất thao tác đọc dữ liệu để nạp cảnh, hoàn toàn không hỗ trợ ghi dữ liệu xuống ổ đĩa. Thêm vào đó, nếu dữ liệu truyền tải không được nén bằng định dạng tương thích hoặc bus hệ thống nghẽn ở chuẩn PCIe đời cũ, hiệu quả nạp tức thì sẽ sụt giảm rõ rệt và hệ thống buộc phải lùi về đường dự phòng qua CPU.</p>
+<h2 id="kiem-tra-cau-hinh-laptop-truoc-khi-ky-vong-toc-do-nap-canh-tuc-thi">Kiểm tra cấu hình laptop trước khi kỳ vọng tốc độ nạp cảnh tức thì</h2>
+<ul>
+<li><strong>Xác định chuẩn giao tiếp ổ đĩa</strong>: Kiểm tra chắc chắn khe M.2 đang chạy SSD giao thức NVMe thay vì SATA, bởi hàng đợi lệnh song song của DirectStorage không hoạt động trên các giao thức lưu trữ cũ.</li>
+<li><strong>Kiểm tra thông số đồ họa</strong>: Đảm bảo GPU hỗ trợ DirectX 12 và Shader Model 6.0; những mẫu card đồ họa như NVIDIA GeForce RTX 4090 Laptop GPU (kiến trúc Ada Lovelace, 9728 nhân CUDA, 16GB GDDR6 với băng thông 576 GB/s) sẽ tận dụng tối đa năng lực giải nén song song so với việc đẩy tải về vi xử lý trung tâm.</li>
+<li><strong>Danh mục trò chơi thực tế</strong>: Rà soát thông tin cập nhật trên trang phân phối game xem tựa game dự định chơi đã tích hợp hàm DirectStorage hay chưa, tránh nhầm lẫn giữa tốc độ đọc trên lý thuyết của ổ cứng và tốc độ nạp cảnh thực tế trong engine.</li>
+</ul>
+<p class="gia">Đăng ngày 21/11/2026</p>
+</article>
+<!--related-->
+<aside class="lq">
+<h2 class="lq-t">Bài cùng chủ đề</h2>
+<ul>
+<li><a href="../vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/">VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung</a></li>
+<li><a href="../mo-hinh-ai-nho-saluki-27b-granite-4-2-doc-thong-so-truoc-khi-tai/">Mô hình AI nhỏ Saluki 27B và Granite 4.2 - đọc thông số trước khi tải</a></li>
+</ul>
+</aside>
+<!--/related-->
+</main>
+<aside class="side"><section class="w w-about"><span class="av" aria-hidden="true">Q</span><div><h2 class="w-t">Quân</h2><p>Mình ghi lại cách đọc thông số chip, nguồn và AI cục bộ trên laptop đời 2025 và 2026.</p><a class="more" href="../../#ve-blog">Về blog</a></div></section><section class="w w-cats"><h2 class="w-t">Chủ đề</h2><ul><li><a href="../../#chu-de-ket-noi"><span>Kết nối</span></a></li><li><a href="../../#chu-de-nguon-nhiet"><span>Nguồn và nhiệt</span></a></li><li><a href="../../#chu-de-ai-cuc-bo"><span>AI cục bộ</span></a></li></ul></section></aside></div>
+<footer class="foot"><div class="wrap fo"><p class="fn">Ghi chép chip laptop</p><p>Nhật ký kỹ thuật cá nhân của Quân về laptop đời 2025 và 2026.</p><p class="sm">Năm 2026. Nội dung viết lại từ tài liệu công khai của hãng.</p></div></footer>
+</body>
+</html>
