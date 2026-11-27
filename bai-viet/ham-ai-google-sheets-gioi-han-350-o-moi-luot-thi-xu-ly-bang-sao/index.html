@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hàm AI Google Sheets giới hạn 350 ô mỗi lượt thì xử lý bảng sao?</title>
+<meta name="description" content="Liệu một công thức bảng tính có thể tự viết nội dung, tra cứu web và điền sạch dữ liệu cho hàng nghìn dòng mà không cần kịch bản phức tạp? Hàm `=AI()`...">
+<link rel="canonical" href="https://chip-laptop-vn.github.io/bai-viet/ham-ai-google-sheets-gioi-han-350-o-moi-luot-thi-xu-ly-bang-sao/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css?v=a7b31697">
+<!--seo-->
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hàm AI Google Sheets giới hạn 350 ô mỗi lượt thì xử lý bảng sao?">
+<meta property="og:description" content="Liệu một công thức bảng tính có thể tự viết nội dung, tra cứu web và điền sạch dữ liệu cho hàng nghìn dòng mà không cần kịch bản phức tạp? Hàm `=AI()`...">
+<meta property="og:url" content="https://chip-laptop-vn.github.io/bai-viet/ham-ai-google-sheets-gioi-han-350-o-moi-luot-thi-xu-ly-bang-sao/">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Ghi chép chip laptop">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Hàm AI Google Sheets giới hạn 350 ô mỗi lượt thì xử lý bảng sao?", "description": "Liệu một công thức bảng tính có thể tự viết nội dung, tra cứu web và điền sạch dữ liệu cho hàng nghìn dòng mà không cần kịch bản phức tạp? Hàm `=AI()`...", "datePublished": "2026-11-27", "dateModified": "2026-11-27", "inLanguage": "vi", "mainEntityOfPage": "https://chip-laptop-vn.github.io/bai-viet/ham-ai-google-sheets-gioi-han-350-o-moi-luot-thi-xu-ly-bang-sao/", "author": {"@type": "Organization", "name": "Ghi chép chip laptop"}, "publisher": {"@type": "Organization", "name": "Ghi chép chip laptop"}}</script>
+<!--/seo-->
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<header class="top"><div class="wrap bar"><a class="brand" href="../../"><span class="mark" aria-hidden="true">C</span><span class="bn">Ghi chép chip laptop</span><span class="tag">Nhật ký kỹ thuật của Quân</span></a><nav class="nav" aria-label="Chính"><a href="../../">Trang chủ</a><a href="../../#chu-de-ket-noi">Kết nối</a><a href="../../#chu-de-nguon-nhiet">Nguồn và nhiệt</a><a href="../../#chu-de-ai-cuc-bo">AI cục bộ</a><a href="../../#ve-blog">Về blog</a></nav></div></header>
+<div class="wrap lay"><main id="main" class="col post">
+<p class="crumb"><a href="../../">Trang chủ</a><span aria-hidden="true"> / </span><span>Kết nối</span></p>
+<article>
+
+
+
+
+
+<h1>Hàm AI Google Sheets giới hạn 350 ô mỗi lượt thì xử lý bảng sao?</h1>
+<p>Liệu một công thức bảng tính có thể tự viết nội dung, tra cứu web và điền sạch dữ liệu cho hàng nghìn dòng mà không cần kịch bản phức tạp? Hàm `=AI()` trong Google Sheets giải quyết trực tiếp bài toán này bằng cách nhúng Gemini vào từng ô, nhưng giới hạn thực thi và yêu cầu kiểm chứng vẫn buộc người dùng phải thiết kế bảng tính có kỷ luật.</p>
+<p>Về bản chất, `=AI(&quot;prompt&quot;, [optional range])` (tương đương `=Gemini()`) là công thức gọi mô hình ngôn ngữ lớn để thực hiện năm tác vụ: tạo văn bản, tóm tắt thông tin, phân loại dữ liệu, phân tích sắc thái cảm xúc và truy cập thông tin thời gian thực từ Google Search. Tính năng nối kết quả Google Search được triển khai từ ngày 15/10/2025, và từ đợt cập nhật 20/10/2026, Google bổ sung nút Sources hiển thị nguồn web cho từng ô.</p>
+<p>Tuy nhiên, hàm này không tự đọc toàn bộ tệp hay các tài liệu khác trong Google Drive. Muốn đầu ra chính xác, người lập bảng phải đưa dữ liệu tham chiếu vào ngay trang tính hiện tại và khai báo trong tham số `range`, đồng thời chia nhỏ các cột dài theo ngưỡng an toàn 350 ô mỗi lượt.</p>
+<p>Vấn đề này bên <a href="https://www.reviewlaptop.vn/onedrive-google-drive-chon-dich-vu-dong-bo/"><strong>ReviewLaptop</strong></a> cũng có một bài mổ xẻ riêng, ai cần chi tiết hơn thì đọc thêm ở đó.</p>
+<h2 id="tac-vu-1-tao-noi-dung-va-phan-loai-theo-ngu-canh">Tác vụ 1: Tạo nội dung và phân loại theo ngữ cảnh</h2>
+<p>Khi xử lý dữ liệu thô như viết mô tả, tóm tắt phản hồi hoặc gắn nhãn cảm xúc, cơ chế hoạt động của `=AI()` phụ thuộc hoàn toàn vào hai thành phần: câu lệnh (`prompt`) và vùng tham chiếu (`range`). Nếu bỏ trống `range`, mô hình chỉ dựa vào kiến thức sẵn có trong câu lệnh, dễ sinh ra văn bản chung chung.</p>
+<p>Điểm nghẽn kỹ thuật nằm ở phạm vi đọc dữ liệu. Theo tài liệu Google Docs Editors, hàm bị cô lập trong trang tính hiện tại. Việc không thể truy xuất chéo sang các tệp khác trong Drive khiến quy trình chuẩn hóa dữ liệu đòi hỏi một bước tiền xử lý: gom toàn bộ cột thông tin liên quan về cùng một sheet trước khi gọi hàm.</p>
+<ul>
+<li><strong>Điều kiện tài khoản:</strong> Cần gói Google Workspace (Business Standard/Plus, Enterprise Standard/Plus), Google AI Pro/Ultra, gói bổ sung Google AI Pro for Education, AI Expanded Access hoặc tham gia Google Workspace Experiments.</li>
+<li><strong>Ngôn ngữ:</strong> Tiếng Việt (`vi-VN`) đã nằm trong danh sách hỗ trợ chính thức. Nếu ô báo lỗi `AI function not available`, nguyên nhân thường do tài khoản chưa thuộc gói hợp lệ hoặc bị quản trị viên chặn thiết lập ngôn ngữ.</li>
+</ul>
+<h2 id="tac-vu-2-tra-cuu-google-search-va-kiem-chung-nguon">Tác vụ 2: Tra cứu Google Search và kiểm chứng nguồn</h2>
+<p>Từ ngày 20/10/2026, khi dùng `=AI()` để tra cứu thông tin mới qua Google Search, người dùng có thể xem nguồn web gắn kèm từng ô qua nút Sources. Đây là cơ chế minh bạch hóa dữ liệu đầu vào, giúp truy ngược nơi Gemini lấy thông tin thay vì tin mù quáng vào kết quả trả về.</p>
+<p>Dù vậy, Google vẫn giữ điều khoản miễn trừ: Gemini có thể gợi ý thông tin sai lệch hoặc không phù hợp, tuyệt đối không dùng làm lời khuyên y tế, pháp lý hay tài chính. Nút Sources chỉ là điểm xuất phát. Để đưa số liệu vào báo cáo chính thức, người dùng vẫn phải mở trang gốc, đối chiếu đúng tên tổ chức và đúng thời điểm công bố, chi tiết quy trình này được ghi nhận cụ thể trên <a href="https://technologyspot.vn/ham-ai-google-sheets-kiem-chung-ket-qua/"><strong>technologyspot.vn</strong></a>.</p>
+<h2 id="tac-vu-3-dien-hang-loat-cho-cot-du-lieu-dai">Tác vụ 3: Điền hàng loạt cho cột dữ liệu dài</h2>
+<p>Khi áp dụng `=AI()` cho cả một cột lớn, tài liệu của Google hiện tồn tại ba con số giới hạn khác nhau qua các đợt cập nhật:</p>
+<ul>
+<li><strong>200 ô:</strong> Mức giới hạn khi ra mắt công thức `=AI()` ngày 25/06/2025.</li>
+<li><strong>350 ô:</strong> Mức giới hạn ghi nhận trên trang trợ giúp <em>Use the AI function in Google Sheets</em> hiện hành.</li>
+<li><strong>3.000 ô:</strong> Mức tối đa cho một yêu cầu <em>Fill with Gemini</em> theo bài đăng ngày 28/10/2026.</li>
+</ul>
+<p>Vì Google không giải thích rõ cơ chế áp dụng song song giữa mốc 350 ô và 3.000 ô, cách vận hành ít rủi ro nhất là chia vùng chọn theo từng cụm 350 ô, bấm <strong>Generate and Insert</strong> và chờ lượt trước chạy xong hoàn toàn mới chuyển sang cụm tiếp theo.</p>
+<p>Để kiểm tra thực tế trên tài khoản đang dùng, hãy mở một bảng tính trên máy tính, nhập thử `=AI(&quot;Tóm tắt trong 10 từ&quot;, A2)` cho một nhóm nhỏ dưới 350 ô, bấm <strong>Generate and Insert</strong> rồi mở nút Sources để đối chiếu trực tiếp với trang gốc trước khi nhân rộng ra toàn bộ cột.</p>
+<p class="gia">Đăng ngày 27/11/2026</p>
+</article>
+<!--related-->
+<aside class="lq">
+<h2 class="lq-t">Bài cùng chủ đề</h2>
+<ul>
+<li><a href="../vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/">VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung</a></li>
+<li><a href="../mo-hinh-ai-nho-saluki-27b-granite-4-2-doc-thong-so-truoc-khi-tai/">Mô hình AI nhỏ Saluki 27B và Granite 4.2 - đọc thông số trước khi tải</a></li>
+</ul>
+</aside>
+<!--/related-->
+</main>
+<aside class="side"><section class="w w-about"><span class="av" aria-hidden="true">Q</span><div><h2 class="w-t">Quân</h2><p>Mình ghi lại cách đọc thông số chip, nguồn và AI cục bộ trên laptop đời 2025 và 2026.</p><a class="more" href="../../#ve-blog">Về blog</a></div></section><section class="w w-cats"><h2 class="w-t">Chủ đề</h2><ul><li><a href="../../#chu-de-ket-noi"><span>Kết nối</span></a></li><li><a href="../../#chu-de-nguon-nhiet"><span>Nguồn và nhiệt</span></a></li><li><a href="../../#chu-de-ai-cuc-bo"><span>AI cục bộ</span></a></li></ul></section></aside></div>
+<footer class="foot"><div class="wrap fo"><p class="fn">Ghi chép chip laptop</p><p>Nhật ký kỹ thuật cá nhân của Quân về laptop đời 2025 và 2026.</p><p class="sm">Năm 2026. Nội dung viết lại từ tài liệu công khai của hãng.</p></div></footer>
+</body>
+</html>
