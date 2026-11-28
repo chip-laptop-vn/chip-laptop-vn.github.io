@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BatteryInfoView gọn nhẹ 129,7 KB nhưng hay bị phần mềm bảo mật chặn</title>
+<meta name="description" content="Nhìn biểu tượng pin ở thanh tác vụ Windows, người dùng chỉ thấy một con số phần trăm chung chung mà không biết viên pin đang rút bao nhiêu điện mỗi giây...">
+<link rel="canonical" href="https://chip-laptop-vn.github.io/bai-viet/batteryinfoview-gon-nhe-129-7-kb-nhung-hay-bi-phan-mem-bao-mat-chan/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css?v=a7b31697">
+<!--seo-->
+<meta property="og:type" content="article">
+<meta property="og:title" content="BatteryInfoView gọn nhẹ 129,7 KB nhưng hay bị phần mềm bảo mật chặn">
+<meta property="og:description" content="Nhìn biểu tượng pin ở thanh tác vụ Windows, người dùng chỉ thấy một con số phần trăm chung chung mà không biết viên pin đang rút bao nhiêu điện mỗi giây...">
+<meta property="og:url" content="https://chip-laptop-vn.github.io/bai-viet/batteryinfoview-gon-nhe-129-7-kb-nhung-hay-bi-phan-mem-bao-mat-chan/">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:site_name" content="Ghi chép chip laptop">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "BatteryInfoView gọn nhẹ 129,7 KB nhưng hay bị phần mềm bảo mật chặn", "description": "Nhìn biểu tượng pin ở thanh tác vụ Windows, người dùng chỉ thấy một con số phần trăm chung chung mà không biết viên pin đang rút bao nhiêu điện mỗi giây...", "datePublished": "2026-11-28", "dateModified": "2026-11-28", "inLanguage": "vi", "mainEntityOfPage": "https://chip-laptop-vn.github.io/bai-viet/batteryinfoview-gon-nhe-129-7-kb-nhung-hay-bi-phan-mem-bao-mat-chan/", "author": {"@type": "Organization", "name": "Ghi chép chip laptop"}, "publisher": {"@type": "Organization", "name": "Ghi chép chip laptop"}}</script>
+<!--/seo-->
+</head>
+<body>
+<a class="skip" href="#main">Bỏ qua đến nội dung</a>
+<header class="top"><div class="wrap bar"><a class="brand" href="../../"><span class="mark" aria-hidden="true">C</span><span class="bn">Ghi chép chip laptop</span><span class="tag">Nhật ký kỹ thuật của Quân</span></a><nav class="nav" aria-label="Chính"><a href="../../">Trang chủ</a><a href="../../#chu-de-ket-noi">Kết nối</a><a href="../../#chu-de-nguon-nhiet">Nguồn và nhiệt</a><a href="../../#chu-de-ai-cuc-bo">AI cục bộ</a><a href="../../#ve-blog">Về blog</a></nav></div></header>
+<div class="wrap lay"><main id="main" class="col post">
+<p class="crumb"><a href="../../">Trang chủ</a><span aria-hidden="true"> / </span><span>Kết nối</span></p>
+<article>
+
+
+
+
+
+<h1>BatteryInfoView gọn nhẹ 129,7 KB nhưng hay bị phần mềm bảo mật chặn</h1>
+<p>Nhìn biểu tượng pin ở thanh tác vụ Windows, người dùng chỉ thấy một con số phần trăm chung chung mà không biết viên pin đang rút bao nhiêu điện mỗi giây hay đã chai bao nhiêu so với lúc xuất xưởng. <strong>BatteryInfoView</strong> giải quyết đúng khoảng trống đó: đây là tiện ích miễn phí của NirSoft, chạy trực tiếp từ tệp nén ZIP mà không cần cài đặt, hiển thị dung lượng thiết kế, dung lượng sạc đầy và tốc độ xả tức thời tính bằng milliwatt.</p>
+<h2 id="cau-truc-battery-information-va-dung-luong-thuc">Cấu trúc BATTERY_INFORMATION và dung lượng thực</h2>
+<p>Khác với cách hiển thị phần trăm đơn thuần của Windows, BatteryInfoView đọc trực tiếp các trường dữ liệu từ cấu trúc `BATTERY_INFORMATION` trên hệ điều hành từ Windows 2000 đến Windows 11. Hai thông số cốt lõi cần đối chiếu là <strong>Designed Capacity</strong> (dung lượng lý thuyết khi pin mới) và <strong>Full Charged Capacity</strong> (dung lượng sạc đầy ở thời điểm hiện tại).</p>
+<p>Việc đọc song song hai giá trị này bằng đơn vị mWh giải thích vì sao hai chiếc laptop cùng báo 50% pin nhưng thời lượng sử dụng thực tế lại chênh lệch đáng kể. Cột <strong>Current Capacity Value</strong> cho thấy năng lượng thật còn lại, giúp đánh giá mức độ suy giảm hóa học của cell pin thay vì đoán qua phần trăm ước lượng. Trường hợp pin bật cờ `BATTERY_CAPACITY_RELATIVE`, đơn vị mWh không xác định và chỉ nên đọc theo tỉ lệ.</p>
+<h2 id="toc-do-xa-tuc-thoi-va-nhat-ky-30-giay">Tốc độ xả tức thời và nhật ký 30 giây</h2>
+<p>Cột <strong>Charge/Discharge Rate</strong> ghi nhận công suất laptop đang rút từ pin hoặc nạp vào pin theo thời gian thực, đo bằng milliwatt. Phiên bản 1.27 bổ sung tùy chọn nền tối Black Background trong menu View và duy trì cửa sổ nhật ký tự động ghi lại trạng thái pin mỗi 30 giây.</p>
+<p>Cơ chế ghi log theo chu kỳ 30 giây giúp người dùng khoanh vùng chính xác tác vụ nào đang gây hao pin bất thường khi máy chạy không tải hoặc xử lý nặng. Tham khảo thêm hướng dẫn chi tiết về các cột thông số trên <a href="https://technologyspot.vn/batteryinfoview-dung-luong-sac-day-toc-do-xa-pin/"><strong>technologyspot.vn</strong></a> để đối chiếu từng trường dữ liệu khi theo dõi.</p>
+<h2 id="goi-32-bit-64-bit-va-nhung-gioi-han-thuc-te">Gói 32-bit, 64-bit và những giới hạn thực tế</h2>
+<p>Từ phiên bản 1.26, NirSoft tách riêng hai gói tải về. Với bản 1.27 đo ngày 27/11/2026, gói 32-bit có dung lượng ZIP 116,1 KB (tệp `.exe` nặng 78,5 KB), còn gói 64-bit dành cho Windows 11 nặng 129,7 KB (tệp `.exe` 112,5 KB); cả hai đều đi kèm tệp trợ giúp `.chm` 81,6 KB và `readme.txt` 9,9 KB.</p>
+<p>Dù gọn nhẹ, công cụ vẫn có ba nhược điểm thực tế cần biết trước khi dùng:</p>
+<ul>
+<li><strong>Phụ thuộc mạch quản lý pin:</strong> Các trường như số sê-ri, ngày sản xuất hay `CycleCount` (số chu kỳ sạc xả) sẽ trả về 0 hoặc để trống nếu phần cứng pin không cấp dữ liệu.</li>
+<li><strong>Dễ bị phần mềm bảo mật chặn:</strong> Theo FAQ của NirSoft, lỗi không mở được tệp `.exe` thường xuất phát từ trình diệt virus nhận diện nhầm.</li>
+<li><strong>Gói tiếng Việt cũ hơn bản gốc:</strong> Tệp ngôn ngữ tiếng Việt `.ini` của T.D. Stoneheart mới dừng ở phiên bản 1.23, cũ hơn bản 1.27 hiện hành.</li>
+</ul>
+<h2 id="checklist-kiem-tra-nhanh-khi-moi-chay">Checklist kiểm tra nhanh khi mới chạy</h2>
+<ul>
+<li>Kiểm tra loại hệ điều hành tại `Settings &gt; System &gt; About` (mục `System type`) trên Windows 10 để chọn đúng gói 32-bit hoặc 64-bit; riêng Windows 11 chỉ dùng bản 64-bit.</li>
+<li>Giải nén toàn bộ 3 tệp trong gói ZIP vào một thư mục riêng như `C:\Tools\Pin` trước khi nhấp đúp tệp `.exe`.</li>
+<li>Nhấn phím tắt <strong>F7</strong> để xác nhận cửa sổ đang ở chế độ <strong>Battery Information</strong> với hai cột `Description` và `Value`.</li>
+<li>Nếu thấy `CycleCount` bằng 0, kiểm tra lại các trường dung lượng trước khi kết luận pin lỗi vì đó thường là giới hạn của mạch pin.</li>
+</ul>
+<p>BatteryInfoView không thay thế được thiết bị đo chuyên dụng, nhưng với 129,7 KB và khả năng ghi nhật ký mỗi 30 giây, đây vẫn là công cụ thực dụng nhất để kiểm chứng độ chai pin và mức ăn điện thực tế trên laptop Windows.</p>
+<p class="gia">Đăng ngày 28/11/2026</p>
+</article>
+<!--related-->
+<aside class="lq">
+<h2 class="lq-t">Bài cùng chủ đề</h2>
+<ul>
+<li><a href="../vrm-throttlestop-fan-control-doc-nguyen-nhan-cpu-laptop-tut-xung/">VRM, ThrottleStop và Fan Control - đọc nguyên nhân CPU laptop tụt xung</a></li>
+<li><a href="../mo-hinh-ai-nho-saluki-27b-granite-4-2-doc-thong-so-truoc-khi-tai/">Mô hình AI nhỏ Saluki 27B và Granite 4.2 - đọc thông số trước khi tải</a></li>
+</ul>
+</aside>
+<!--/related-->
+</main>
+<aside class="side"><section class="w w-about"><span class="av" aria-hidden="true">Q</span><div><h2 class="w-t">Quân</h2><p>Mình ghi lại cách đọc thông số chip, nguồn và AI cục bộ trên laptop đời 2025 và 2026.</p><a class="more" href="../../#ve-blog">Về blog</a></div></section><section class="w w-cats"><h2 class="w-t">Chủ đề</h2><ul><li><a href="../../#chu-de-ket-noi"><span>Kết nối</span></a></li><li><a href="../../#chu-de-nguon-nhiet"><span>Nguồn và nhiệt</span></a></li><li><a href="../../#chu-de-ai-cuc-bo"><span>AI cục bộ</span></a></li></ul></section></aside></div>
+<footer class="foot"><div class="wrap fo"><p class="fn">Ghi chép chip laptop</p><p>Nhật ký kỹ thuật cá nhân của Quân về laptop đời 2025 và 2026.</p><p class="sm">Năm 2026. Nội dung viết lại từ tài liệu công khai của hãng.</p></div></footer>
+</body>
+</html>
